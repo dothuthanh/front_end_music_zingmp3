@@ -1,0 +1,54 @@
+<app-welcome-area></app-welcome-area>
+<!-- Editable table -->
+<div>{{value}}</div>
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Add Song To Album</h3>
+  <div class="card-body">
+    <form [formGroup] = "albumForm"  class="ng-untouched ng-pristine ng-valid"  (ngSubmit)="addSongToAlbum()">
+      <div id="table" class="table-editable">
+        <span class="table-add float-left mb-3 mr-2"><a routerLink="/create-song" class="text-success"><i class="fa fa-plus-circle fa-3x"></i></a></span>
+        <span class="table-add float-right mb-3 mr-2">
+         <select formControlName="id" style="color: black;height: 30px" class="col-lg-9">
+            <option value="" [disabled]="true">Album</option>
+            <option *ngFor="let album of albumList" value="{{album.id}}">{{album.name}}</option>
+         </select>
+        </span>
+
+        <table class="table table-bordered table-responsive-md table-striped text-center">
+          <thead>
+          <tr>
+            <th class="text-center">Image</th>
+            <th class="text-center">Song Name</th>
+            <th class="text-center">Singer</th>
+            <th class="text-center">Author</th>
+            <th class="text-center">Add To Album</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let list of songList">
+            <td class="pt-3-half" style="width: 100px; height: 100px;"><img [src]="list.image" alt=""></td>
+            <td class="pt-3-half" >{{list.name}}</td>
+            <td class="pt-3-half" >{{list.singer}}</td>
+            <td class="pt-3-half">{{list.author}}</td>
+            <td>
+              <input type="checkbox" (click)="changeSelection(list.id)">
+            </td>
+          </tr>
+          <!-- This is our clonable table line -->
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-9 btn-inline">
+          <button class="btn btn-outline-secondary" type="button" routerLink="/">Cancel</button>
+          &nbsp;
+          <button class="btn btn-outline-success"  type="submit" >Save Album</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<!-- Editable table -->

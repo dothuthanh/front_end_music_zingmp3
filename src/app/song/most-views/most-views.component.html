@@ -1,0 +1,65 @@
+<welcome-area></welcome-area>
+<app-listen-bar></app-listen-bar>
+<!-- ***** Latest Episodes Area Start ***** -->
+<div>{{value}}</div>
+<section class="poca-latest-epiosodes section-padding-80">
+  <!--   Projects Menu -->
+  <div class="container">
+    <div class="poca-projects-menu mb-30 ">
+      <div class="text-center portfolio-menu">
+        <button class="btn" data-filter=".media"><a [routerLink]="['/song']">All</a></button>
+        <button class="btn"  data-filter=".media"><a [routerLink]="['/latest-song']">Latest</a></button>
+        <button class="btn" data-filter=".media"><a [routerLink]="['/song/most-views-song']">Hot Hit</a></button>
+        <button class="btn" data-filter=".tech">Tech</button>
+        <button class="btn" data-filter=".tutor">Tutorials</button>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <!-- Section Heading -->
+      <div class="col-12">
+        <div class="section-heading text-center">
+          <h2> The Most Views Songs</h2>
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row poca-portfolio">
+      <!-- Single gallery Item -->
+
+      <div class="col-12 col-md-4 single_gallery_item " data-wow-delay="0.2s" *ngFor="let song of mostViewSong">
+        <!-- Welcome Music Area -->
+        <div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+          <div class="poca-music-thumbnail">
+            <a [routerLink]="['/song/details',song.id]">
+              <img src="{{song.image}}" alt="" style="height: 340px; width: 600px">
+            </a>
+          </div>
+          <div class="poca-music-content text-center">
+            <!--            <span class="music-published-date mb-2">{{song.dateSubmitted}}</span>-->
+            <h3 class="title" style="font-size: 18px">
+              <a [routerLink]="['/song/details',song.id]">
+                {{song.name}}
+              </a>
+            </h3>
+            <div class="music-meta-data">
+              <p style="height: 20px; font-size: 10px">By <a href="#" class="music-author" style="font-size: 10px">Admin</a> | <a href="#" class="music-catagory" style="font-size: 10px">{{song.style.name}}</a> |
+                {{song.dateSubmitted}}</p>
+            </div>
+            <!-- Likes, Share & Download -->
+            <div class="likes-share-download d-flex align-items-center justify-content-between">
+              <a (click)="onLike(user.id,song.id)"><i class="fa fa-heart" aria-hidden="true"></i> Like ({{song.likes.length}})</a>
+              <div>
+                <a class="mr-4"><i class="fa fa-headphones" aria-hidden="true"></i> Views ({{song.views}})</a>
+                <a><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+<app-welcome-area></app-welcome-area>
+<!-- Editable table -->
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Album List Song</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-left mb-3 mr-2"><a routerLink="/album/create-song" class="text-success"><i class="fa fa-plus-circle fa-3x"></i></a></span>
+<!--      <span class="table-add float-right mb-3 mr-2">-->
+<!--         <select formControlName="id" style="color: black;height: 30px" class="col-lg-9">-->
+<!--            <option value="" [disabled]="true">Album</option>-->
+<!--            <option *ngFor="let album of albumList" value="{{album.id}}" ><button type="submit" (click)="getSongAlbum(album.id)">{{album.name}}</button></option>-->
+<!--         </select>-->
+<!--      </span>-->
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+        <tr>
+          <th class="text-center">Image</th>
+          <th class="text-center">Song Name</th>
+          <th class="text-center">Singer</th>
+          <th class="text-center">Author</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let song of songList">
+          <td class="pt-3-half" style="width: 100px; height: 100px;"><img [src]="song.image" alt=""></td>
+          <td class="pt-3-half"><a [routerLink]="['/song/details',song.id]">{{song.name}}</a></td>
+          <td class="pt-3-half" >{{song.singer}}</td>
+          <td class="pt-3-half">{{song.author}}</td>
+          <td>
+            <span class="table-remove"><button type="button" class="btn btn-info btn-rounded btn-sm my-0"
+                                               [routerLink]="['/song/update',song.id]">Edit</button></span>
+<!--            &nbsp;-->
+<!--            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0" (click)="delete(song.id)">-->
+<!--              Delete</button></span>-->
+          </td>
+        </tr>
+        <!-- This is our clonable table line -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Editable table -->

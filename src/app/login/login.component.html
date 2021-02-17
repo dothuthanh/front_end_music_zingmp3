@@ -1,0 +1,63 @@
+<!--<div *ngIf="isLoggedIn; else loggedOut">-->
+<!--  Logged in as {{roles}}.-->
+<!--</div>-->
+<script src="../../assets/login/login.js"></script>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<!--<link rel="stylesheet" href="../../assets/login/login.css">-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 mx-auto">
+      <div id="first" style="margin-top: 100px">
+        <div class="myform form ">
+          <div class="logo mb-3">
+            <div class="col-md-12 text-center">
+              <h1>Login</h1>
+            </div>
+          </div>
+          <form action="" method="post" name="login" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="form-group">
+              <label >Username</label>
+              <input type="email" name="username" [(ngModel)]="form.username" #username="ngModel"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Username" required>
+              <div *ngIf="f.submitted && username.invalid">
+                <div *ngIf="username.errors.required"  style="color: red">Username is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label >Password</label>
+              <input type="password" name="password" [(ngModel)]="form.password" #password="ngModel"
+                     required minlength="6"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+              <div *ngIf="f.submitted && password.invalid">
+                <div *ngIf="password.errors.required">Password is required</div>
+                <div *ngIf="password.errors.minlength"  style="color: red">Password must be at least 6 characters</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <p class="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
+            </div>
+            <div class="col-md-12 text-center ">
+              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+            </div>
+            <div class="form-group">
+              <p class="text-center">Don't have account? <a routerLink="../register" id="signup">Sign up here</a></p>
+            </div>
+            <div class="form-group">
+              <p class="text-center"><a routerLink="../song">Go home</a></p>
+            </div>
+            <div *ngIf="isLoginFailed" style="color: red; padding-left: 55px; font-size: 17px">
+              <div>User name or Password is missing. Try again!</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,71 @@
+<app-welcome-area></app-welcome-area>
+<!-- Editable table -->
+<div>{{value}}</div>
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable Song</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-left mb-3 mr-2"><a routerLink="../add" class="text-success"><i class="fa fa-plus-circle fa-3x"></i></a></span>
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+        <tr>
+          <th class="text-center">Image</th>
+          <th class="text-center">Song Name</th>
+          <th class="text-center">Singer</th>
+          <th class="text-center">Author</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let list of songList">
+          <td class="pt-3-half" style="width: 100px; height: 100px;"><img [src]="list.image" alt=""></td>
+          <td class="pt-3-half"><a [routerLink]="['/song/details',list.id]">{{list.name}}</a></td>
+          <td class="pt-3-half" >{{list.singer}}</td>
+          <td class="pt-3-half">{{list.author}}</td>
+          <td>
+            <div class="table-remove">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0"
+                  [routerLink]="['/song/update',list.id]">Edit</button>
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0 "
+                      data-toggle="modal" data-target="#myModal">Delete</button>
+<!--              <button type="button" class="btn btn-danger btn-rounded" (click)="delete(list.id)">DELETE-->
+<!--              </button>-->
+            </div>
+            <div class="table-remove">
+              <!-- Trigger the modal with a button -->
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content text-center">
+                    <div class="modal-header text-center">
+                      <h4 class="modal-title text-center">Delete song</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete this song ? </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-dark " data-dismiss="modal">Cancel</button>
+                      <span class="table-remove">
+                        <button type="button" class="btn btn-danger btn-rounded" (click)="delete(list.id)" data-dismiss="modal">
+                          OK
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="table-remove"><button type="button" class="btn btn-info btn-rounded btn-sm my-0"
+             [routerLink]="['/song/update',list.id]">Edit</button></span>&nbsp;
+            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0" (click)="delete(list.id)">
+              Delete</button></span>
+          </td>
+        </tr>
+        <!-- This is our clonable table line -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Editable table -->

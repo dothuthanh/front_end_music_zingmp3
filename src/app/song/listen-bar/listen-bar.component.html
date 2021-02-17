@@ -1,0 +1,36 @@
+<!-- ***** Featured Music Area Start ***** -->
+<div class="poca-featured-music-area mt-50">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="poca-music-area box-shadow d-flex align-items-center flex-wrap border" data-animation="fadeInUp" data-delay="900ms" *ngFor="let song of songLike">
+          <div class="poca-music-thumbnail">
+            <img src="{{song.image}}" alt="">
+          </div>
+          <div class="poca-music-content">
+<!--            <span class="music-published-date">{{mostLikeSong.dateSubmitted}}</span>-->
+            <h2>{{song.name}}</h2>
+            <div class="music-meta-data">
+              <p>By <a href="#" class="music-author">{{song.author}}</a> | <a href="#" class="music-catagory">{{song.style}}</a> | <a href="#" class="music-duration">{{song.dateSubmitted}}</a></p>
+            </div>
+            <!-- Music Player -->
+            <div class="poca-music-player">
+              <audio preload="auto" controls style="width: 787px; ">
+                <source src="{{song.fileMp3}}">
+              </audio>
+            </div>
+            <!-- Likes, Share & Download -->
+            <div class="likes-share-download d-flex align-items-center justify-content-between">
+              <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
+              <div>
+                <a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
+                <a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ***** Featured Music Area End ***** -->

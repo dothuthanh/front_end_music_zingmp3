@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/src/assets/style.css">
+<welcome-area></welcome-area>
+
+<div class="row poca-featured-music-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div *ngIf="song" class="poca-music-area box-shadow d-flex align-items-center flex-wrap border" data-animation="fadeInUp" data-delay="900ms">
+          <div class="poca-music-thumbnail">
+            <img src="{{song.image}}" alt="">
+          </div>
+          <div class="poca-music-content">
+            <span class="music-published-date">{{song.dateSubmitted}}</span>
+            <h2>{{song.name}}</h2>
+            <div class="music-meta-data">
+              <p>By <a href="#" class="music-author">Admin</a> | <a href="#" class="music-catagory">{{song.style.name}}</a> | <a href="#" class="music-duration">00:02:56</a></p>
+            </div>
+            <!-- Music Player -->
+            <div class="poca-music-player">
+              <audio preload="auto" autoplay controls style="width: 787px">
+                <source src="{{song.fileMp3}}">
+              </audio>
+            </div>
+            <!-- Likes, Share & Download -->
+            <div class="likes-share-download d-flex align-items-center justify-content-between">
+              <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
+              <div>
+                <a class="mr-4"><i class="fa fa-headphones" aria-hidden="true"></i> Views ({{song.views}})</a>
+                <a href="{{song.fileMp3}}"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3>Lời bài hát:</h3>
+      <p [innerHTML]="song.lyrics"></p>
+    </div>
+  </div>
+</div>
+
+
+

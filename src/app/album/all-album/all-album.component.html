@@ -1,0 +1,33 @@
+<app-welcome-area></app-welcome-area>
+<!-- Editable table -->
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Your Album</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-left mb-3 mr-2"><a routerLink="/album/create" class="text-success"><i class="fa fa-plus-circle fa-3x"></i></a></span>
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+        <tr>
+          <th class="text-center">#</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Author</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let album of albumList,index as index">
+          <td class="pt-3-half">{{index+1}}</td>
+          <td class="pt-3-half"><a [routerLink]="['/album/list',album.id]">{{album.name}}</a></td>
+          <td class="pt-3-half">{{album.user.lastName}}</td>
+          <td>
+            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0" (click)="deleteAlbum(album.id)">
+              Delete</button></span>
+          </td>
+        </tr>
+        <!-- This is our clonable table line -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Editable table -->

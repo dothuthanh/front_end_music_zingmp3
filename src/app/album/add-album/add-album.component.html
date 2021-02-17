@@ -1,0 +1,42 @@
+
+<app-welcome-area></app-welcome-area>
+<div class="container" style="text-align: center; font-size: 40px;">
+  <b>
+    ADD NEW ALBUM
+  </b>
+</div>
+<div class="main-container" style="margin-top: 50px">
+  <div class="row section">
+    <div class="col-xl-8 col-md-10 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="card-title mb-0">Add Album</h6>
+        </div>
+        <div class="card-body">
+          <form [formGroup] = "albumForm"  class="ng-untouched ng-pristine ng-valid"  (ngSubmit)="onSubmit()">
+            <div class="form-row form-group">
+              <label class="col-lg-3 text-md-right col-form-label" for="name" >Album Name</label>
+              <div class="col-lg-9">
+                <input class="form-control is-valid" id="name" type="text" formControlName="name"
+                       [ngClass]="albumForm.get('name').invalid&&albumForm.touched ? 'is-invalid' : 'is-valid'" placeholder="Example: Album">
+                <div *ngIf="albumForm.get('name').invalid && albumForm.get('name').touched" style="color: red">
+                  Name is required and min length is 1
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3"></div>
+              <div class="col-lg-9 btn-inline">
+                <button class="btn btn-outline-secondary" type="button" routerLink="/">Cancel</button>
+                &nbsp;
+                <button class="btn btn-outline-success" [disabled]="albumForm.invalid" type="submit" >Save Album</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>

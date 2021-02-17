@@ -1,0 +1,89 @@
+<app-header></app-header>
+<welcome-area></welcome-area>
+<div class="container" style="text-align: center; font-size: 40px;">
+  <b>
+    Register
+  </b>
+</div>
+
+<div class="card col-xl-8 col-md-10 mx-auto">
+  <div class="card-body" style="color: red">
+    <div *ngIf="isSignedUp; else signupForm">
+      Your registration is successful. Please login!
+    </div>
+    <ng-template #signupForm>
+      <div class="container">
+      <div class="row col-lg-12" style="width:900px;">
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" style="width: 600px; margin-left: 100px" novalidate>
+          <div class="form-group">
+            <label>First Name(*)</label>
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="form.firstName" #firstName="ngModel"
+                   required />
+            <div *ngIf="f.submitted && firstName.invalid">
+              <div *ngIf="firstName.errors.required" style="color: red">firstName is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Last Name(*)</label>
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel"
+                   required />
+            <div *ngIf="f.submitted && lastName.invalid">
+              <div *ngIf="lastName.errors.required" style="color: red">lastName is required(*)</div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label>Phone number(*)</label>
+            <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="form.phoneNumber" #phoneNumber="ngModel"
+                   required />
+            <div *ngIf="f.submitted && phoneNumber.invalid">
+              <div *ngIf="phoneNumber.errors.required" style="color: red">Phone number is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email(*)</label>
+            <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required email />
+            <div *ngIf="f.submitted && email.invalid">
+              <div *ngIf="email.errors.required">Email is required</div>
+              <div *ngIf="email.errors.email" style="color: red">Email must be a valid email address</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Username(*)</label>
+            <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
+                   required />
+            <div *ngIf="f.submitted && username.invalid">
+              <div *ngIf="username.errors.required" style="color: red">Username is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label >Password(*)</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
+                   required minlength="6"/>
+            <div *ngIf="f.submitted && password.invalid">
+              <div *ngIf="password.errors.required">Password is required</div>
+              <div *ngIf="password.errors.minlength" style="color: red">Password must be at least 6 characters</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary">Register</button>
+            <div *ngIf="isSignUpFailed" class="alert alert-warning">
+              Register Success! Please login<br/>
+            </div>
+            <div *ngIf="isSignedUp" class="alert alert-warning">
+              failed!<br/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    </ng-template>
+  </div>
+</div>
+<app-footer></app-footer>
+

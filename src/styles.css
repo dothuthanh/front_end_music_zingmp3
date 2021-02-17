@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+/*.col{*/
+/*  text-align: center;*/
+/*}*/
+/*input[type=text] {*/
+/*  width: 300px;*/
+/*  !*box-sizing: border-box;*!*/
+/*  border: 5px solid #ccc;*/
+/*  border-radius: 10px;*/
+/*  font-size: 16px;*/
+/*  !*background-color: white;*!*/
+/*  !*background-image: url('searchicon.png');*!*/
+/*  !*background-position: 20px 10px;*!*/
+/*  !*background-repeat: no-repeat;*!*/
+/*  !*padding: 12px 20px 20px 60px;*!*/
+/*  !*-webkit-transition: width 0.4s ease-in-out;*!*/
+/*  !*transition: width 5s ease-in-out;*!*/
+/*}*/
+/*.badge{*/
+/*  background-color: #3b125d;*/
+/*}*/
+body{
+  background-color: #000000;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
