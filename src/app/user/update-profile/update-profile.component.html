@@ -1,4 +1,4 @@
-<welcome-area></welcome-area>
+<!--<welcome-area></welcome-area>-->
 <div class="container" style="text-align: center; font-size: 40px;">
   <b>
     UPDATE PROFILE
@@ -14,13 +14,13 @@
           <h6 class="card-title mb-0" style="text-align: center">Edit User</h6>
         </div>
         <div class="card-body">
-          <form [formGroup] = "profileForm"  class="ng-untouched ng-pristine ng-valid" (ngSubmit)="updateUser()">
+          <form [formGroup] = "updateUserForm"  class="ng-untouched ng-pristine ng-valid" (ngSubmit)="updateUser()">
 
             <div class="form-row form-group">
               <label class="col-lg-2 text-md-right col-form-label" for="firstName" >First Name</label>
               <div class="col-lg-9">
                 <input class="form-control" id="firstName" type="text" formControlName="firstName">
-                <div *ngIf="profileForm.get('firstName').invalid && profileForm.get('firstName').touched" style="color: #ff0000">
+                <div *ngIf="updateUserForm.get('firstName').invalid && updateUserForm.get('firstName').touched" style="color: #ff0000">
                   First Name is required and min length is 1
                 </div>
               </div>
@@ -39,7 +39,7 @@
               <label class="col-lg-2 text-md-right col-form-label" for="email">Email</label>
               <div class="col-lg-9">
                 <input class="form-control" id="email" type="text" formControlName="email">
-                <div *ngIf="profileForm.get('email').invalid && profileForm.get('email').touched" style="color: red">
+                <div *ngIf="updateUserForm.get('email').invalid && updateUserForm.get('email').touched" style="color: red">
                   Email is required
                 </div>
               </div>
@@ -50,7 +50,7 @@
               <label class="col-lg-2 text-md-right col-form-label" for="phoneNumber">Phone Number</label>
               <div class="col-lg-9">
                 <input class="form-control" id="phoneNumber" type="text" formControlName="phoneNumber">
-                <div *ngIf="profileForm.get('phoneNumber').invalid && profileForm.get('phoneNumber').touched" style="color: red">
+                <div *ngIf="updateUserForm.get('phoneNumber').invalid && updateUserForm.get('phoneNumber').touched" style="color: red">
                   Phone is required and min length is 5
                 </div>
               </div>
@@ -59,17 +59,21 @@
             <div class="row">
               <div class="col-lg-3"></div>
               <div class="col-lg-9 btn-inline">
-                <button class="btn btn-outline-secondary" type="button">Cancel</button>
+                <button class="btn btn-outline-secondary" type="button" routerLink="/song">Cancel</button>
                 &nbsp;
                 <button class="btn btn-outline-success" type="submit" >Update user</button>
               </div>
             </div>
-            <div *ngIf="isUpdate" style="color: green">
-              successfully!
-            </div>
-            <div *ngIf="isUpdateFailed" style="color: red">
-              update failed. Please try again!
-            </div>
+<!--            <div *ngIf="isUpdate" style="color: green">-->
+<!--              successfully!-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            <div>-->
+<!--              <button routerLink=""></button>-->
+
+<!--            </div>-->
+<!--            <div *ngIf="isUpdateFailed" style="color: red">-->
+<!--              update failed. Please try again!-->
+<!--            </div>-->
           </form>
         </div>
       </div>

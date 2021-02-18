@@ -1,5 +1,5 @@
-import {Song} from "./Song";
-import {User} from "./User";
+import {Song} from './Song';
+import {User} from './User';
 
 export interface Album {
   id?: number;

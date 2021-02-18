@@ -4,6 +4,7 @@ import {AuthLoginInfo} from '../interface/login-info';
 import {Observable} from 'rxjs';
 import {JwtResponse} from '../interface/jwt-response';
 import {SignUpInfo} from '../interface/sigup-info';
+import {UserToken} from '../user-token';
 
 // 'Authorization': 'Bearer ' + localStorage.getItem('AuthToken')
 const httpOptions = {
@@ -17,6 +18,7 @@ export class AuthService {
 
   private loginUrl = 'http://localhost:8080/api/auth/signin';
   private signupUrl = 'http://localhost:8080/api/auth/signup';
+  public currentUser: Observable<UserToken>;
 
   constructor(private http: HttpClient) {
   }
