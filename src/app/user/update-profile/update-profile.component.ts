@@ -45,8 +45,18 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   updateUser() {
-
     if (this.user.username != '') {
+      this.userUpdate.username = this.user.username;
+    }
+    if (this.user.password != '') {
+      this.userUpdate.password = this.user.password;
+    }
+
+    if (this.user.name != '') {
+      this.userUpdate.name = this.user.name;
+    }
+
+    if (this.user.firstName != '') {
       this.userUpdate.firstName = this.user.firstName;
     }
     if (this.user.lastName != '') {
