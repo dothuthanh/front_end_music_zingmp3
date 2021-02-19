@@ -21,7 +21,9 @@ export class SongService {
   constructor(private httpClient: HttpClient) {
   }
 
-  addSong(song: Song): Observable<Song> {
+  // tslint:disable-next-line:ban-types
+  addSong(song: Song ): Observable<Song> {
+    // @ts-ignore
     return this.httpClient.post<Song>(this.API_URL_CREATE_SONG, song);
   }
 
