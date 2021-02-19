@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Song} from '../../interface/Song';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SongService} from '../../service/song.service';
@@ -120,34 +120,31 @@ export class AddSongComponent implements OnInit {
           id: this.userCurrent.id
         }
       };
-      console.log(song);
       this.songService.addSong(song).subscribe(() => {
         console.log(song);
         this.createSuccess();
         this.songForm.reset();
-      }, (e) => {
+        }, (e) => {
         this.createFail();
         console.log(e);
       });
       await this.router.navigate(['/list']);
     });
   }
-
-  createSuccess() {
+  createSuccess(){
     this.Toast.fire({
       icon: 'success',
       title: ' create success '
     });
   }
-
-  createFail() {
+  createFail(){
     this.Toast.fire({
       icon: 'error',
       title: 'create fail'
     });
   }
 
-  getUserInfor() {
+  getUserInfor(){
     this.info = {
       token: this.tokenService.getToken(),
       username: this.tokenService.getUsername(),
@@ -164,3 +161,4 @@ export class AddSongComponent implements OnInit {
         console.log(error));
   }
 }
+

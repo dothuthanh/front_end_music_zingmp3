@@ -1,11 +1,11 @@
-
-export interface User {
+export interface UserToken {
   id?: number;
   username?: string;
   name?: any;
   password?: string;
+  email?: any;
   firstName?: string;
+  phoneNumber: any;
   lastName?: string;
-  email?: string;
-  phoneNumber?: string;
+  token?: string;
 }

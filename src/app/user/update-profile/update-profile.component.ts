@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../service/user.service';
 import Swal from 'sweetalert2';
@@ -6,6 +6,9 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../interface/User';
 import {TokenStorageService} from '../../auth/token-storage.service';
+import {Observable} from 'rxjs';
+import {AuthService} from '../../auth/auth.service';
+import {UserToken} from '../../user-token';
 
 
 @Component({
@@ -15,72 +18,57 @@ import {TokenStorageService} from '../../auth/token-storage.service';
 })
 export class UpdateProfileComponent implements OnInit {
 
-  user: User;
-  success: string;
-  fail: string;
-  profileForm: FormGroup;
-  username: string;
-  isUpdate = false;
-  isUpdateFailed = false;
-  Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000
-  });
-  constructor(private userService: UserService,
-              private storage: AngularFireStorage,
-              private route: ActivatedRoute,
-              private routes: Router,
-              private fb: FormBuilder,
-              private token: TokenStorageService) {}
+  user: User = {};
+  userUpdate: User = {};
+  currentUser: User;
+
+  downloadURL: Observable<string>;
+  avatar = '';
+
+  constructor(
+    private storage: AngularFireStorage,
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router
+  ) {
+  }
+
   ngOnInit(): void {
-    this.username = this.token.getUsername();
-    this.profileForm = this.fb.group({
-      // , [Validators.required, Validators.minLength(5)]
-      // , [Validators.required, Validators.minLength(5)]
-      // , [Validators.required]
-      // , [Validators.required]
-      firstName: [''],
-      lastName: [''],
-      phoneNumber: [''],
-      email: [''],
+    this.user.username = sessionStorage.getItem("AuthUsername");
+    this.userService.getUserByUserName(this.user.username).subscribe(value1 => {
+      this.user = value1;
     });
-    // const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.getUserByUserName(this.username)
-      .subscribe(result => {
-        this.user = result;
-        this.profileForm.patchValue(this.user);
-        this.success = 'Edit user successfully !';
-      }, error => {
-        this.fail = 'Edit user fail';
-      });
+
+
+
+
   }
-  updateUser(){
-    if (this.profileForm.valid) {
-      const {value} = this.profileForm;
-      const data = {
-        ...this.user,
-        ...value
-      };
-      this.userService.updateUser(data)
-        .subscribe(result => {
-          // console.log('success');
-          // this.routes.navigate(['list']);
-          this.updateSuccess();
-          this.isUpdate  = true;
-          this.isUpdateFailed = false;
-        }, error => {
-          console.log(error);
-          this.isUpdate  = false;
-          this.isUpdateFailed = true;
-        });
+
+  updateUser() {
+    if (this.user.username != '') {
+      this.userUpdate.username = this.user.username;
     }
-  }
-  updateSuccess(){
-    this.Toast.fire({
-      icon: 'success',
-      title: 'Cập nhật thành công'
-    });
+    if (this.user.password != '') {
+      this.userUpdate.password = this.user.password;
+    }
+
+    if (this.user.name != '') {
+      this.userUpdate.name = this.user.name;
+    }
+
+    if (this.user.firstName != '') {
+      this.userUpdate.firstName = this.user.firstName;
+    }
+    if (this.user.lastName != '') {
+      this.userUpdate.lastName = this.user.lastName;
+    }
+    if (this.user.phoneNumber != '') {
+      this.userUpdate.phoneNumber = this.user.phoneNumber;
+    }
+    if (this.user.email != '') {
+      this.userUpdate.email = this.user.email;
+    }
+    this.userService.updateUser(this.userUpdate).subscribe(res=>{})
+
   }
 }

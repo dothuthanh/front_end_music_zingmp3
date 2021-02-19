@@ -10,7 +10,7 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 })
 export class TokenStorageService {
   private currentUserSubject: BehaviorSubject<JwtResponse>;
-  private roles: Array<string> = [];
+   private roles: Array<string> = [];
   constructor() {}
 
   signOut() {
