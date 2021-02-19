@@ -17,12 +17,14 @@ import { AdminComponent } from './admin/admin.component';
 import {SongModule} from './song/song.module';
 
 import { JwtModule } from '@auth0/angular-jwt';
+import {UpdatePasswordComponent} from "./user/update-password/update-password.component";
 
 const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   },
+
   {
     path: 'song',
     loadChildren: () => import('./song/song.module').then(m => m.SongModule)
@@ -42,7 +44,12 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent
-  }
+  },
+  // {
+  //   path: 'update-password',
+  //   // component: UpdatePasswordComponent
+  //   loadChildren : () => import('')
+  // }
 ];
 
 @NgModule({
