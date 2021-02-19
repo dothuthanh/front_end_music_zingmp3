@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Song} from '../../interface/Song';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SongService} from '../../service/song.service';
@@ -10,6 +10,7 @@ import Swal from '../../../assets/sweetalert2/sweetalert2.min.js';
 import {User} from '../../interface/User';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {UserService} from '../../service/user.service';
+
 
 @Component({
   selector: 'app-add-song',
@@ -47,7 +48,8 @@ export class AddSongComponent implements OnInit {
   ngOnInit(): void {
     this.getUserInfor();
     // console.log(this.info.username);
-    if (this.info.username !== ''){
+    if (this.info.username !== '') {
+      // @ts-ignore
       this.getUserDetail();
     }
     this.songForm = this.fb.group({
@@ -57,7 +59,7 @@ export class AddSongComponent implements OnInit {
       author: ['', [Validators.required, Validators.minLength(1)]],
       // image: ['', [Validators.required]],
       // fileMp3: ['', [Validators.required]],
-      // user: [''],
+      user: [''],
       style: this.fb.group({
         id: ['', [Validators.required]],
       }),
@@ -108,54 +110,58 @@ export class AddSongComponent implements OnInit {
       console.log(picture);
       console.log(music);
       const song: Song = {
-        name: value.name,
-        singer: value.singer,
-        author: value.author,
-        lyrics: value.lyrics,
+        name: this.songForm.value.name,
+        singer: this.songForm.value.singer,
+        author: this.songForm.value.author,
+        lyrics: this.songForm.value.lyrics,
+        style: this.songForm.value.style,
         image: picture,
         fileMp3: music,
-        style: value.style,
-        user: {
-          id: this.userCurrent.id
-        }
+        // user: {
+        //   id: this.userCurrent.id
+        // }
       };
+      console.log(song);
       this.songService.addSong(song).subscribe(() => {
         console.log(song);
         this.createSuccess();
         this.songForm.reset();
-        }, (e) => {
+      }, (e) => {
         this.createFail();
         console.log(e);
       });
       await this.router.navigate(['/list']);
     });
   }
-  createSuccess(){
+
+  createSuccess() {
     this.Toast.fire({
       icon: 'success',
       title: ' create success '
     });
   }
-  createFail(){
+
+  createFail() {
     this.Toast.fire({
       icon: 'error',
       title: 'create fail'
     });
   }
 
-  getUserInfor(){
+  getUserInfor() {
     this.info = {
       token: this.tokenService.getToken(),
       username: this.tokenService.getUsername(),
     };
   }
-  getUserDetail(){
-    this.userService.getUserByUserName(this.info.username).subscribe( data =>
-    {
-      this.userCurrent = data;
-      console.log(this.userCurrent);
-    }, error =>
-      console.log(error));
-  }
-}
 
+  getUserDetail() {
+      this.userService.getUserByUserName(this.info.username).subscribe( data =>
+      {
+        this.userCurrent = data;
+        console.log(this.userCurrent);
+        return this.userCurrent;
+      }, error =>
+        console.log(error));
+    }
+}
