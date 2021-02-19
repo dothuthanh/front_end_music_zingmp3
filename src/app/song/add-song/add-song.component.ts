@@ -47,7 +47,6 @@ export class AddSongComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserInfor();
-    // console.log(this.info.username);
     if (this.info.username !== '') {
       // @ts-ignore
       this.getUserDetail();
@@ -117,9 +116,9 @@ export class AddSongComponent implements OnInit {
         style: this.songForm.value.style,
         image: picture,
         fileMp3: music,
-        // user: {
-        //   id: this.userCurrent.id
-        // }
+        user: {
+          id: this.userCurrent.id
+        }
       };
       console.log(song);
       this.songService.addSong(song).subscribe(() => {
@@ -156,12 +155,12 @@ export class AddSongComponent implements OnInit {
   }
 
   getUserDetail() {
-      this.userService.getUserByUserName(this.info.username).subscribe( data =>
+     this.userService.getUserByUserName(this.info.username).subscribe( data =>
       {
         this.userCurrent = data;
         console.log(this.userCurrent);
         return this.userCurrent;
       }, error =>
         console.log(error));
-    }
+  }
 }
