@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {UserToken} from '../user/user-token';
 import {BehaviorSubject} from 'rxjs';
+import {JwtResponse} from '../interface/jwt-response';
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
 const AUTHORITIES_KEY = 'AuthAuthorities';
@@ -8,8 +9,8 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
   providedIn: 'root'
 })
 export class TokenStorageService {
-  private currentUserSubject: BehaviorSubject<UserToken>;
-  private roles: Array<string> = [];
+  private currentUserSubject: BehaviorSubject<JwtResponse>;
+   private roles: Array<string> = [];
   constructor() {}
 
   signOut() {
@@ -48,6 +49,9 @@ export class TokenStorageService {
     return this.roles;
   }
   public get currentUserValue(): UserToken {
+    return this.currentUserSubject.value;
+  }
+  public  getUserValue(): JwtResponse{
     return this.currentUserSubject.value;
   }
 }

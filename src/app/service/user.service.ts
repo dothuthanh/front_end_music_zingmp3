@@ -19,9 +19,9 @@ export class UserService {
   private readonly API__PROFILE = 'http://localhost:8080/user';
 
   private userUrl = 'http://localhost:8080/api/test/user';
-  url = "http://localhost:8080/setting";
   constructor(private httpClient: HttpClient) {
   }
+
   getUserBoard(): Observable<string> {
     return this.httpClient.get(this.userUrl, {responseType: 'text'});
   }
@@ -42,18 +42,14 @@ export class UserService {
   //   return this.httpClient.get<any>(this.API_URL_USER_INFO + `/${id}`);
   // }
 
-  updateUser(user: User) {
-    return this.httpClient.put<User>(`${this.url}/users/update`,user);
-
+  updateUser(user: User): Observable<User> {
+    return this.httpClient.put<User>(`${this.API__PROFILE}/${user.username}`, user);
   }
 
   getUserById(id: number): Observable<User> {
     return this.httpClient.get<any>(`${this.API_URL_PROFILE}/${id}`);
   }
-
-  getUserByUserName(username: string): Observable<User> {
-    // return this.httpClient.get<User>(`${this.API_URL_GET_USER_BY_NAME}/${name}`);
-    return this.httpClient.get<User>(`${this.url}/users/${username}`);
-
+  getUserByUserName(name: string): Observable<User> {
+    return this.httpClient.get<User>(`${this.API_URL_GET_USER_BY_NAME}/${name}`);
   }
 }

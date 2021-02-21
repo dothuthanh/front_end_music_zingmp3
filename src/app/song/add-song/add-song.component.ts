@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Song} from '../../interface/Song';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SongService} from '../../service/song.service';
@@ -47,7 +47,6 @@ export class AddSongComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserInfor();
-    // console.log(this.info.username);
     if (this.info.username !== '') {
       // @ts-ignore
       this.getUserDetail();
@@ -117,38 +116,35 @@ export class AddSongComponent implements OnInit {
         style: this.songForm.value.style,
         image: picture,
         fileMp3: music,
-        // user: {
-        //   id: this.userCurrent.id
-        // }
+        user: {
+          id: this.userCurrent.id
+        }
       };
-      console.log(song);
       this.songService.addSong(song).subscribe(() => {
         console.log(song);
         this.createSuccess();
         this.songForm.reset();
-      }, (e) => {
+        }, (e) => {
         this.createFail();
         console.log(e);
       });
       await this.router.navigate(['/list']);
     });
   }
-
-  createSuccess() {
+  createSuccess(){
     this.Toast.fire({
       icon: 'success',
       title: ' create success '
     });
   }
-
-  createFail() {
+  createFail(){
     this.Toast.fire({
       icon: 'error',
       title: 'create fail'
     });
   }
 
-  getUserInfor() {
+  getUserInfor(){
     this.info = {
       token: this.tokenService.getToken(),
       username: this.tokenService.getUsername(),
@@ -156,12 +152,13 @@ export class AddSongComponent implements OnInit {
   }
 
   getUserDetail() {
-      this.userService.getUserByUserName(this.info.username).subscribe( data =>
+     this.userService.getUserByUserName(this.info.username).subscribe( data =>
       {
         this.userCurrent = data;
         console.log(this.userCurrent);
         return this.userCurrent;
       }, error =>
         console.log(error));
-    }
+  }
 }
+
