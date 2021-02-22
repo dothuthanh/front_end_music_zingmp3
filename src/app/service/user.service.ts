@@ -12,14 +12,14 @@ export class UserService {
   private readonly API_URL_UPDATE_PASSWORD = 'http://localhost:8080/api/auth/updateUser';
 
   // private readonly API_URL_GET_USER = 'http://localhost:8080/user/' ;
-  private readonly API_URL_GET_USER_BY_NAME = 'http://localhost:8080/user' ;
+  private readonly API_URL_GET_USER_BY_NAME = 'http://localhost:8080/users' ;
   // private readonly API_URL_USER_INFO = 'http://localhost:8080/user' ;
 
   private readonly API_URL_PROFILE = 'http://localhost:8080/user';
   private readonly API__PROFILE = 'http://localhost:8080/user';
 
   private userUrl = 'http://localhost:8080/api/test/user';
- private url = 'http://localhost:8080/setting';
+ private url = 'http://localhost:8080/';
   constructor(private httpClient: HttpClient) {
   }
   getUserBoard(): Observable<string> {

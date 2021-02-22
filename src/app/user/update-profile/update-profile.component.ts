@@ -38,10 +38,6 @@ export class UpdateProfileComponent implements OnInit {
     this.userService.getUserByUserName(this.user.username).subscribe(value1 => {
       this.user = value1;
     });
-
-
-
-
   }
 
   updateUser() {
@@ -68,7 +64,7 @@ export class UpdateProfileComponent implements OnInit {
     if (this.user.email != '') {
       this.userUpdate.email = this.user.email;
     }
-    this.userService.updateUser(this.userUpdate).subscribe(res=>{})
+    this.userService.updateUser(this.userUpdate).subscribe(res=>{});
 
   }
 }
