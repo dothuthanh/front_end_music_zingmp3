@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Song} from "../../interface/Song";
 import {Album} from "../../interface/Album";
 import {SongService} from "../../service/song.service";
@@ -22,7 +22,7 @@ export class AddAblumSongComponent implements OnInit {
   value = '';
   songList: Song[] = [];
   albumList: Album[] = [];
-  idSong: any[] =[];
+  idSong: any[] = [];
   albumForm: FormGroup;
 
   Toast = Swal.mixin({
@@ -39,46 +39,48 @@ export class AddAblumSongComponent implements OnInit {
               private route: ActivatedRoute,
               private albumService: AlbumService,
               private tokenService: TokenStorageService,
-              private userService: UserService) { }
+              private userService: UserService) {
+  }
 
   ngOnInit(): void {
     this.getUserInfor();
-    if (this.info.username !== ''){
+    if (this.info.username !== '') {
       this.getUserDetail()
         .then(res => {
-          return this.albumService.getAllAlbumByUserId(res.id).toPromise()
+          return this.albumService.getAllAlbumByUserId(res.id).toPromise();
         })
         .then(result => {
           this.albumList = result;
         })
       ;
     }
-    this.songService.getAllSongs().subscribe( data => {
+    this.songService.getAllSongs().subscribe(data => {
       this.songList = data;
     }, error => {
       console.log(error);
     });
     this.albumForm = this.fb.group({
       id: ['', [Validators.required]],
-    })
+    });
 
     // this.albumService.getAllAlbumByUserId(this.userCurrent.id).subscribe(data => {
     //   this.albumList = data;
     // }, error => {
     //   console.log(error);
     // });
+    console.log(this.songList);
   }
 
-  async addSongToAlbum(){
+  async addSongToAlbum() {
     const {value} = this.albumForm;
     const album = {
-      id: value.id,
+      id: this.albumForm.value.id,
       songList: []
-    }
-    album.songList= this.convertToSong(this.idSong);
+    };
+    album.songList = this.convertToSong(this.idSong);
     await this.albumService.createAlbum(album).subscribe(next => {
       console.log(album);
-      console.log(next)
+      console.log(next);
     }, (e) => {
       console.log(e);
     });
@@ -86,45 +88,45 @@ export class AddAblumSongComponent implements OnInit {
     this.addSongToAlbumSuccess();
   }
 
-  addSongToAlbumSuccess(){
+  addSongToAlbumSuccess() {
     this.Toast.fire({
       icon: 'success',
       title: 'Thêm bài hát vào album thành công'
     });
   }
 
-  changeSelection(id: number){
+  changeSelection(id: number) {
     console.log(id);
-    if (this.idSong.includes(id)){
-      for (let i=0;i<this.idSong.length;i++){
-        if (this.idSong[i] === id){
-          this.idSong.splice(i,1);
+    if (this.idSong.includes(id)) {
+      for (let i = 0; i < this.idSong.length; i++) {
+        if (this.idSong[i] === id) {
+          this.idSong.splice(i, 1);
         }
       }
       console.log(this.idSong);
-    }else {
+    } else {
       this.idSong.push(id);
       console.log(this.idSong);
     }
   }
 
-  convertToSong(array){
-    for(let i = 0; i < array.length; i++){
+  convertToSong(array) {
+    for (let i = 0; i < array.length; i++) {
       array[i] = {
         id: array[i]
-      }
+      };
     }
     return array;
   }
 
-  getUserInfor(){
+  getUserInfor() {
     this.info = {
       token: this.tokenService.getToken(),
       username: this.tokenService.getUsername(),
     };
   }
 
-  getUserDetail(){
+  getUserDetail() {
     return this.userService.getUserByUserName(this.info.username).toPromise();
   }
 }
