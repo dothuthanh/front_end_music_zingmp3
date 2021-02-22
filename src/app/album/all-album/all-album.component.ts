@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../../interface/User";
-import {Album} from "../../interface/Album";
-import {Song} from "../../interface/Song";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {SongService} from "../../service/song.service";
-import {SearchService} from "../../service/search.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {AlbumService} from "../../service/album.service";
-import {TokenStorageService} from "../../auth/token-storage.service";
-import {UserService} from "../../service/user.service";
+import {User} from '../../interface/User';
+import {Album} from '../../interface/Album';
+import {Song} from '../../interface/Song';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {SongService} from '../../service/song.service';
+import {SearchService} from '../../service/search.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AlbumService} from '../../service/album.service';
+import {TokenStorageService} from '../../auth/token-storage.service';
+import {UserService} from '../../service/user.service';
 import Swal from '../../../assets/sweetalert2/sweetalert2.min.js';
 
 @Component({
@@ -46,13 +46,14 @@ export class AllAlbumComponent implements OnInit {
     if (this.info.username !== ''){
       this.getUserDetail()
         .then(res => {
-          return this.albumService.getAllAlbumByUserId(res.id).toPromise()
+          return this.albumService.getAllAlbumByUserId(res.id).toPromise();
         })
         .then(result => {
           this.albumList = result;
         })
       ;
     }
+    console.log(this.albumList);
   }
 
   getSongAlbum(id: number){
@@ -62,14 +63,14 @@ export class AllAlbumComponent implements OnInit {
         this.songList = this.album.songList;
         console.log(this.songList);
       }
-    )
+    );
   }
 
   convertToSong(array){
-    for(let i = 0; i < array.length; i++){
+    for (let i = 0; i < array.length; i++){
       array[i] = {
         id: array[i]
-      }
+      };
     }
     return array;
   }
@@ -85,7 +86,7 @@ export class AllAlbumComponent implements OnInit {
     return this.userService.getUserByUserName(this.info.username).toPromise();
   }
 
-  deleteAlbum(id :number){
+  deleteAlbum(id: number){
     this.albumService.deleteAlbum(id).subscribe( () => {
       this.deleteSuccess();
       this.getAllSong();
@@ -106,7 +107,7 @@ export class AllAlbumComponent implements OnInit {
     if (this.info.username !== ''){
       this.getUserDetail()
         .then(res => {
-          return this.albumService.getAllAlbumByUserId(res.id).toPromise()
+          return this.albumService.getAllAlbumByUserId(res.id).toPromise();
         })
         .then(result => {
           this.albumList = result;

@@ -12,7 +12,7 @@ import {UserGuard} from '../user.guard';
 
 import { AllAlbumComponent } from './all-album/all-album.component';
 import { AlbumListSongComponent } from './album-list-song/album-list-song.component';
-import {SongModule} from "../song/song.module";
+import {SongModule} from '../song/song.module';
 
 const routes: Routes = [
   {
