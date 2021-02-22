@@ -11,7 +11,7 @@ import {Like} from '../interface/like';
 })
 export class SongService {
   private readonly API_URL_CREATE_SONG = 'http://localhost:8080/song/create';
-  private readonly API_SONG = 'http://localhost:8080/song';
+  private readonly API_SONG = 'http://localhost:8080/song/delete';
   private readonly API_SONG_FIND = 'http://localhost:8080/findByName';
   private readonly API_LATEST_SONG = 'http://localhost:8080/latest-song';
   private readonly API_ALL_SONG_BY_USER_ID = 'http://localhost:8080/song/mylist';
@@ -42,7 +42,7 @@ export class SongService {
     return this.httpClient.get<Song[]>(`${this.API_SONG_FIND}/${name}`);
   }
   deleteSong(id: number): Observable<Song> {
-    return this.httpClient.delete<Song>(this.API_SONG + `/${id}`);
+    return this.httpClient.get<Song>(this.API_SONG + `/${id}`);
   }
   getAllSongsLatest(): Observable<Song[]> {
     return this.httpClient.get<Song[]>(this.API_LATEST_SONG);

@@ -4,12 +4,12 @@ import {Song} from '../../interface/Song';
 import {SearchService} from '../../service/search.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import Swal from '../../../assets/sweetalert2/sweetalert2.min.js';
-import {AlbumService} from "../../service/album.service";
-import {Album} from "../../interface/Album";
-import {User} from "../../interface/User";
-import {TokenStorageService} from "../../auth/token-storage.service";
-import {UserService} from "../../service/user.service";
-import {async} from "@angular/core/testing";
+import {AlbumService} from '../../service/album.service';
+import {Album} from '../../interface/Album';
+import {User} from '../../interface/User';
+import {TokenStorageService} from '../../auth/token-storage.service';
+import {UserService} from '../../service/user.service';
+import {async} from '@angular/core/testing';
 
 @Component({
   selector: 'app-list',
@@ -42,7 +42,7 @@ export class ListComponent implements OnInit {
     if (this.info.username !== ''){
       this.getUserDetail()
         .then(res => {
-          return this.songService.getAllSongByUserId(res.id).toPromise()
+          return this.songService.getAllSongByUserId(res.id).toPromise();
         })
         .then(result => {
           this.songList = result;
@@ -75,7 +75,7 @@ export class ListComponent implements OnInit {
     if (this.info.username !== ''){
       this.getUserDetail()
         .then(res => {
-          return this.songService.getAllSongByUserId(res.id).toPromise()
+          return this.songService.getAllSongByUserId(res.id).toPromise();
         })
         .then(result => {
           this.songList = result;

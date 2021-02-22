@@ -17,19 +17,19 @@
         </thead>
         <tbody>
         <tr *ngFor="let list of songList">
-          <td class="pt-3-half" style="width: 100px; height: 100px;"><img [src]="list.image" alt=""></td>
+          <td class="pt-3-half" ><img [src]="list.image" alt="" style="width: 100px; height: 100px;"></td>
           <td class="pt-3-half"><a [routerLink]="['/song/details',list.id]">{{list.name}}</a></td>
           <td class="pt-3-half" >{{list.singer}}</td>
           <td class="pt-3-half">{{list.author}}</td>
           <td>
-            <div class="table-remove">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0"
-                  [routerLink]="['/song/update',list.id]">Edit</button>
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0 "
-                      data-toggle="modal" data-target="#myModal">Delete</button>
-<!--              <button type="button" class="btn btn-danger btn-rounded" (click)="delete(list.id)">DELETE-->
-<!--              </button>-->
-            </div>
+<!--            <div class="table-remove">-->
+<!--              <button type="button" class="btn btn-info btn-rounded btn-sm my-0"-->
+<!--                  [routerLink]="['/song/update',list.id]">Edit</button>-->
+<!--&lt;!&ndash;              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0 "&ndash;&gt;-->
+<!--&lt;!&ndash;                      data-toggle="modal" data-target="#myModal">Delete</button>&ndash;&gt;-->
+<!--&lt;!&ndash;              <button type="button" class="btn btn-danger btn-rounded" (click)="delete(list.id)">DELETE&ndash;&gt;-->
+<!--&lt;!&ndash;              </button>&ndash;&gt;-->
+<!--            </div>-->
             <div class="table-remove">
               <!-- Trigger the modal with a button -->
               <!-- Modal -->
